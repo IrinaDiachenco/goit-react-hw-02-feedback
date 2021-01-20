@@ -23,16 +23,15 @@ class App extends Component {
         return (good + neutral + bad)
     }
 
-    countPositivePercantage = () => {
-        const { good } = this.state
-        const total = this.countTotalFeedback()
-        return total ?Math.round((good / total) * 100) : 0
+    countPositivePercantage = (total, good) => {
+        const percent = (good / total) * 100 
+        return percent.toFixed()
     }
 
     render() {
         const { good, neutral, bad } = this.state
         const total = this.countTotalFeedback()
-        const positivePercantage = this.countPositivePercantage()
+        const positivePercantage = this.countPositivePercantage(total, this.state.good)
         return (
             <div>
             <Section title='Please leave feedback'>
